@@ -397,7 +397,7 @@ $(KEYBOARD_OUTPUT)_CONFIG := $(PROJECT_CONFIG)
 # Default target.
 all: build check-size
 build: elf cpfirmware
-check-size: build
+check-size: build sizeafter
 objs-size: build
 
 include show_options.mk

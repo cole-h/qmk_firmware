@@ -24,9 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT_ID          0xEED2
 #define DEVICE_VER          0x0101
 
-#define MANUFACTURER        "Massdrop Inc."
-#define PRODUCT             "CTRL Keyboard"
-#define SERIAL_NUM          "Unavailable"
+#define MANUFACTURER        "Drop"
+#define PRODUCT             "CTRL"
+#define SERIAL_NUM          "0"
 
 /* key matrix size */
 #define MATRIX_ROWS 11
@@ -95,9 +95,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCE 5
 
 // Required BOOT key hold time (in ms) for restarting to bootloader -PS081419
-#define BOOTKEY_HOLD_MS		2000
+#define BOOTKEY_HOLD_MS 2000
 
+/* vin settings */
 #define TAPPING_TERM 200
+#define PERMISSIVE_HOLD
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 //#define LOCKING_SUPPORT_ENABLE

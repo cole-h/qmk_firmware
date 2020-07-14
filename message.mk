@@ -17,21 +17,21 @@ endif
 
 ON_ERROR ?= exit 1
 
-OK_STRING=$(OK_COLOR)[OK]$(NO_COLOR)\n
-ERROR_STRING=$(ERROR_COLOR)[ERRORS]$(NO_COLOR)\n
-WARN_STRING=$(WARN_COLOR)[WARNINGS]$(NO_COLOR)\n
+OK_STRING=
+ERROR_STRING=$(ERROR_COLOR)[ERRORS]$(NO_COLOR)
+WARN_STRING=$(WARN_COLOR)[WARNINGS]$(NO_COLOR)
 
 TAB_LOG = printf "\n%s\n\n" "$$LOG" | $(AWK) '{ sub(/^/," | "); print }'
 TAB_LOG_PLAIN = printf "%s\n" "$$LOG"
-AWK_STATUS = $(AWK) '{ printf " %-10s\n", $$1; }'
-AWK_CMD = $(AWK) '{ printf "%-99s", $$0; }'
+AWK_STATUS = $(AWK) '{ printf "%s", $$1; }'
+AWK_CMD = $(AWK) '{ printf "%s\n", $$0; }'
 PRINT_ERROR = ($(SILENT) ||printf " $(ERROR_STRING)" | $(AWK_STATUS)) && $(TAB_LOG) && $(ON_ERROR)
 PRINT_WARNING = ($(SILENT) || printf " $(WARN_STRING)" | $(AWK_STATUS)) && $(TAB_LOG)
 PRINT_ERROR_PLAIN = ($(SILENT) ||printf " $(ERROR_STRING)" | $(AWK_STATUS)) && $(TAB_LOG_PLAIN) && $(ON_ERROR)
 PRINT_WARNING_PLAIN = ($(SILENT) || printf " $(WARN_STRING)" | $(AWK_STATUS)) && $(TAB_LOG_PLAIN)
 PRINT_OK = $(SILENT) || printf " $(OK_STRING)" | $(AWK_STATUS)
 BUILD_CMD = LOG=$$($(CMD) 2>&1) ; if [ $$? -gt 0 ]; then $(PRINT_ERROR); elif [ "$$LOG" != "" ] ; then $(PRINT_WARNING); else $(PRINT_OK); fi;
-MAKE_MSG_FORMAT = $(AWK) '{ printf "%-118s", $$0;}'
+MAKE_MSG_FORMAT = $(AWK) '{ printf "%s", $$0;}'
 
 # Define Messages
 # English
