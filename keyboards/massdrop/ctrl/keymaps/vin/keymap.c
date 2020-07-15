@@ -18,8 +18,8 @@
 `-----------------------------------------------------------------------------------------------------------------'
 */
 
-/* CTRL keycodes */
-enum {
+enum custom_keycodes {
+    /* CTRL keycodes */
     L_BRI = SAFE_RANGE, // LED Brightness Increase
     L_BRD,              // LED Brightness Decrease
     L_EDG_I,            // LED Edge Brightness Increase
@@ -44,62 +44,71 @@ enum {
     DBG_MOU,            // DEBUG Toggle Mouse Prints
     DBG_FAC,            // DEBUG Factory light testing (All on white)
     MD_BOOT,            // Restart into bootloader after hold timeout
+
+    /* Custom keycodes */
 };
 
-/* Custom keycodes */
-enum {
-    FF_OR_NEXT,
-    RW_OR_PREV,
-    TD_LSFT,
-    TD_RSFT,
-    TD_FN,
+/* Tapdance keycodes */
+enum tapdance_keycodes {
+    LSHFT,
+    RSHFT,
 };
 
 /* Layers */
-enum {
-    BASE,
+enum layers {
+    QWERTY,
     COLEMAK,
     UTIL,
 };
 
-/* Key aliases */
-#define KC_FFNX FF_OR_NEXT
-#define KC_RWPV RW_OR_PREV
-#define MT_C2E LCTL_T(KC_ESC)
-#define TG_NKRO MAGIC_TOGGLE_NKRO // Toggle 6KRO / NKRO mode
-
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_LSFT] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
-  [TD_RSFT] = ACTION_TAP_DANCE_DOUBLE(KC_RSFT, KC_CAPS),
-  [TD_FN] = ACTION_TAP_DANCE_DOUBLE(MO(UTIL), DF(COLEMAK)),
+  [LSHFT] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+  [RSHFT] = ACTION_TAP_DANCE_DOUBLE(KC_RSFT, KC_CAPS),
 };
 
+/* Key aliases */
+#define MT_C2E LCTL_T(KC_ESC)
+#define TD_LSFT TD(LSHFT)
+#define TD_RSFT TD(RSHFT)
+#define TG_NKRO MAGIC_TOGGLE_NKRO // Toggle 6KRO / NKRO mode
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [BASE] = LAYOUT(
-        KC_ESC,      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,    KC_F11,  KC_F12,             KC_PSCR, KC_SLCK, KC_PAUS, \
-        KC_GRV,      KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,      KC_MINS, KC_EQL,  KC_BSPC,   KC_INS,  KC_HOME, KC_PGUP, \
-        KC_TAB,      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,      KC_LBRC, KC_RBRC, KC_BSLS,   KC_DEL,  KC_END,  KC_PGDN, \
-        MT_C2E,      KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,   KC_QUOT, KC_ENT,                                        \
-        TD(TD_LSFT), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,   TD(TD_RSFT),                          KC_UP,            \
-        KC_LCTL,     KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, TD(TD_FN), KC_RGUI,   KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT  \
+    [QWERTY] = LAYOUT(
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,            KC_PSCR, KC_SLCK, KC_PAUS, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS, KC_EQL,  KC_BSPC,  KC_INS,  KC_HOME, KC_PGUP, \
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC, KC_RBRC, KC_BSLS,  KC_DEL,  KC_END,  KC_PGDN, \
+        MT_C2E,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT, KC_ENT,                                       \
+        TD_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  TD_RSFT,                             KC_UP,            \
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(UTIL), KC_RGUI, KC_RCTL,           KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
 
     [COLEMAK] = LAYOUT(
-        KC_ESC,      KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,             KC_PSCR, KC_SLCK, KC_PAUS, \
-        KC_GRV,      KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS, KC_EQL,  KC_BSPC,   KC_INS,  KC_HOME, KC_PGUP, \
-        KC_TAB,      KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC, KC_RBRC, KC_BSLS,   KC_DEL,  KC_END,  KC_PGDN, \
-        MT_C2E,      KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,     KC_QUOT, KC_ENT,                                        \
-        TD(TD_LSFT), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  TD(TD_RSFT),                             KC_UP,         \
-        KC_LCTL,     KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, DF(BASE), KC_RGUI,   KC_RCTL,          KC_LEFT, KC_DOWN, KC_RGHT  \
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,            KC_PSCR, KC_SLCK, KC_PAUS, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS, KC_EQL,  KC_BSPC,  KC_INS,  KC_HOME, KC_PGUP, \
+        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC, KC_RBRC, KC_BSLS,  KC_DEL,  KC_END,  KC_PGDN, \
+        MT_C2E,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,     KC_QUOT, KC_ENT,                                       \
+        TD_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  TD_RSFT,                             KC_UP,            \
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(UTIL), KC_RGUI, KC_RCTL,           KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
 
-    [UTIL] = LAYOUT(
+    /*
+    [COLEMAK] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______, \
-        L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_MPLY, KC_MSTP, KC_MUTE, \
-        L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______, _______, _______, _______,                                       \
-        _______, L_T_MD,  L_T_ONF, _______, L_EDG_M, MD_BOOT, TG_NKRO, _______, _______, _______, _______, _______,                              KC_VOLU,          \
-        _______, _______, _______,                   DBG_FAC,                            _______, _______, _______, _______,            KC_RWPV, KC_VOLD, KC_FFNX  \
+        _______, _______, _______, KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, _______, _______, _______,   _______, _______, _______, \
+        _______, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    _______, ______,                                        \
+        _______, _______, _______, _______, _______, _______, KC_K,    _______, _______, _______, _______, _______,                              _______,          \
+        _______, _______, _______,                   _______,                            _______, _______, _______, _______,            _______, _______, _______  \
+    ),
+    */
+
+    [UTIL] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______,           _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______,  _______, _______, _______, \
+        L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, _______, _______, _______,    _______, _______, _______,  KC_MPLY, KC_MSTP, KC_MUTE, \
+        L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______, _______,    _______, _______,                                      \
+        _______, L_T_MD,  L_T_ONF, _______, L_EDG_M, MD_BOOT, TG_NKRO, _______, _______, _______, DF(QWERTY), DF(COLEMAK),                         KC_VOLU,          \
+        _______, _______, _______,                   DBG_FAC,                            _______, _______,    _______, _______,           KC_MPRV, KC_VOLD, KC_MNXT  \
     ),
 
     /*
@@ -114,9 +123,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 };
 
-#define MODS_SHIFT  (get_mods() & MOD_MASK_SHIFT)
-#define MODS_CTRL   (get_mods() & MOD_MASK_CTRL)
-#define MODS_ALT    (get_mods() & MOD_MASK_ALT)
+#define MODS_SHIFT  (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT))
+#define MODS_CTRL   (get_mods() & MOD_BIT(KC_LCTL)   || get_mods() & MOD_BIT(KC_RCTRL))
+#define MODS_ALT    (get_mods() & MOD_BIT(KC_LALT)   || get_mods() & MOD_BIT(KC_RALT))
 
 // Called whenever a key is pressed or released
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -327,34 +336,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 if (timer_elapsed32(key_timer) >= BOOTKEY_HOLD_MS) {
                     reset_keyboard();
-                }
-            }
-            break;
-
-        case FF_OR_NEXT:
-            // hold means KC_MFFD, tap means KC_MNXT
-            if (record->event.pressed) {
-                key_timer = timer_read32();
-                register_code(KC_MFFD);
-            } else {
-                unregister_code(KC_MFFD);
-                if (timer_elapsed32(key_timer) >= TAPPING_TERM) {
-                    register_code(KC_MNXT);
-                    unregister_code(KC_MNXT);
-                }
-            }
-            break;
-
-        case RW_OR_PREV:
-            // hold means KC_MRWD, tap means KC_MPRV
-            if (record->event.pressed) {
-                key_timer = timer_read32();
-                register_code(KC_MRWD);
-            } else {
-                unregister_code(KC_MRWD);
-                if (timer_elapsed32(key_timer) >= TAPPING_TERM) {
-                    register_code(KC_MPRV);
-                    unregister_code(KC_MPRV);
                 }
             }
             break;
