@@ -58,7 +58,8 @@ enum tapdance_keycodes {
 enum layers {
     QWERTY,
     COLEMAK,
-    UTIL,
+    UTIL1,
+    UTIL2,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -67,6 +68,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 /* Key aliases */
+#define HUH(kc) LCTL(LALT(LGUI(kc)))
 #define MT_C2E LCTL_T(KC_ESC)
 #define TD_LSFT TD(LSHFT)
 #define TD_RSFT TD(RSHFT)
@@ -74,21 +76,21 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,            KC_PSCR, KC_SLCK, KC_PAUS, \
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS, KC_EQL,  KC_BSPC,  KC_INS,  KC_HOME, KC_PGUP, \
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC, KC_RBRC, KC_BSLS,  KC_DEL,  KC_END,  KC_PGDN, \
-        MT_C2E,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT, KC_ENT,                                       \
-        TD_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  TD_RSFT,                             KC_UP,            \
-        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(UTIL), KC_RGUI, KC_RCTL,           KC_LEFT, KC_DOWN, KC_RGHT  \
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,    KC_F11,    KC_F12,            KC_PSCR, KC_SLCK, KC_PAUS, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,      KC_MINS,   KC_EQL,  KC_BSPC,  KC_INS,  KC_HOME, KC_PGUP, \
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,      KC_LBRC,   KC_RBRC, KC_BSLS,  KC_DEL,  KC_END,  KC_PGDN, \
+        MT_C2E,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,   KC_QUOT,   KC_ENT,                                       \
+        TD_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,   TD_RSFT,                               KC_UP,            \
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(UTIL1), MO(UTIL2), KC_RCTL,           KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
 
     [COLEMAK] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,            KC_PSCR, KC_SLCK, KC_PAUS, \
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS, KC_EQL,  KC_BSPC,  KC_INS,  KC_HOME, KC_PGUP, \
-        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC, KC_RBRC, KC_BSLS,  KC_DEL,  KC_END,  KC_PGDN, \
-        MT_C2E,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,     KC_QUOT, KC_ENT,                                       \
-        TD_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  TD_RSFT,                             KC_UP,            \
-        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(UTIL), KC_RGUI, KC_RCTL,           KC_LEFT, KC_DOWN, KC_RGHT  \
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,    KC_F11,    KC_F12,            KC_PSCR, KC_SLCK, KC_PAUS, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,      KC_MINS,   KC_EQL,  KC_BSPC,  KC_INS,  KC_HOME, KC_PGUP, \
+        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,   KC_LBRC,   KC_RBRC, KC_BSLS,  KC_DEL,  KC_END,  KC_PGDN, \
+        MT_C2E,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,      KC_QUOT,   KC_ENT,                                       \
+        TD_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,   TD_RSFT,                               KC_UP,            \
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             KC_RALT, MO(UTIL1), MO(UTIL2), KC_RCTL,           KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
 
     /*
@@ -96,19 +98,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______, \
         _______, _______, _______, KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, _______, _______, _______,   _______, _______, _______, \
-        _______, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    _______, ______,                                        \
+        _______, _______, KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    _______, ______,                                        \
         _______, _______, _______, _______, _______, _______, KC_K,    _______, _______, _______, _______, _______,                              _______,          \
         _______, _______, _______,                   _______,                            _______, _______, _______, _______,            _______, _______, _______  \
     ),
     */
 
-    [UTIL] = LAYOUT(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______,           _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______,  _______, _______, _______, \
-        L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, _______, _______, _______,    _______, _______, _______,  KC_MPLY, KC_MSTP, KC_MUTE, \
-        L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______, _______,    _______, _______,                                      \
-        _______, L_T_MD,  L_T_ONF, _______, L_EDG_M, MD_BOOT, TG_NKRO, _______, _______, _______, DF(QWERTY), DF(COLEMAK),                         KC_VOLU,          \
-        _______, _______, _______,                   DBG_FAC,                            _______, _______,    _______, _______,           KC_MPRV, KC_VOLD, KC_MNXT  \
+    [UTIL1] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______,    _______, _______,           _______,    _______,    _______,    \
+        _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4), G(KC_5), G(KC_6), G(KC_7), G(KC_8), G(KC_9),     G(KC_0),    _______, _______, _______,  _______,    _______,    _______,    \
+        L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, _______, _______,     _______,    _______, _______, _______,  _______,    _______,    _______,    \
+        L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______,     _______,    _______, _______,                                               \
+        _______, L_T_MD,  L_T_ONF, _______, L_EDG_M, MD_BOOT, TG_NKRO, _______, _______, DF(COLEMAK), DF(QWERTY), _______,                                G(KC_UP),               \
+        _______, _______, _______,                   DBG_FAC,                            _______,     _______,    _______, _______,           G(KC_LEFT), G(KC_DOWN), G(KC_RGHT)  \
+    ),
+
+    [UTIL2] = LAYOUT(
+        _______, _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______, _______,            _______, _______, _______, \
+        _______, HUH(KC_1), HUH(KC_2), HUH(KC_3), HUH(KC_4), HUH(KC_5), HUH(KC_6), HUH(KC_7), HUH(KC_8), HUH(KC_9), HUH(KC_0), _______, _______, _______,   _______, _______, _______, \
+        _______, KC_KP_7,   KC_KP_8,   KC_KP_9,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______, _______, _______,   KC_MPLY, KC_MSTP, KC_MUTE, \
+        _______, KC_KP_4,   KC_KP_5,   KC_KP_6,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______, _______,                                       \
+        _______, KC_KP_1,   KC_KP_2,   KC_KP_3,   _______,   _______,   _______,   _______,   _______,   _______,   _______,   _______,                              KC_VOLU,          \
+        _______, KC_KP_0,   KC_PDOT,                         _______,                                    _______,   _______,   _______, _______,            KC_MPRV, KC_VOLD, KC_MNXT  \
     ),
 
     /*
@@ -127,6 +138,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define MODS_CTRL   (get_mods() & MOD_BIT(KC_LCTL)   || get_mods() & MOD_BIT(KC_RCTRL))
 #define MODS_ALT    (get_mods() & MOD_BIT(KC_LALT)   || get_mods() & MOD_BIT(KC_RALT))
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MT_C2E:
+            return 150;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+void led_set_user(uint8_t usb_led) {
+  // Force-enable Numlock for numpad layer
+  if (!(usb_led & (1 << USB_LED_NUM_LOCK))) {
+    register_code(KC_NUMLOCK);
+    unregister_code(KC_NUMLOCK);
+  }
+}
+
 // Called whenever a key is pressed or released
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint32_t key_timer = 0;
@@ -135,23 +163,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case L_BRI:
             if (record->event.pressed) {
-                if (LED_GCR_STEP > LED_GCR_MAX - gcr_desired) gcr_desired = LED_GCR_MAX;
-                else gcr_desired += LED_GCR_STEP;
-                if (led_animation_breathing) gcr_breathe = gcr_desired;
+                if (LED_GCR_STEP > LED_GCR_MAX - gcr_desired) {
+                    gcr_desired = LED_GCR_MAX;
+                } else {
+                    gcr_desired += LED_GCR_STEP;
+                }
+                
+                if (led_animation_breathing) {
+                    gcr_breathe = gcr_desired;
+                }
             }
             break;
 
         case L_BRD:
             if (record->event.pressed) {
-                if (LED_GCR_STEP > gcr_desired) gcr_desired = 0;
-                else gcr_desired -= LED_GCR_STEP;
-                if (led_animation_breathing) gcr_breathe = gcr_desired;
+                if (LED_GCR_STEP > gcr_desired) {
+                    gcr_desired = 0;
+                } else {
+                    gcr_desired -= LED_GCR_STEP;
+                }
+                
+                if (led_animation_breathing) {
+                    gcr_breathe = gcr_desired;
+                }
             }
             break;
 
         case L_EDG_M:
             if (record->event.pressed) {
                 led_edge_mode++;
+
                 if (led_edge_mode > LED_EDGE_MODE_MAX) {
                     led_edge_mode = LED_EDGE_MODE_ALL;
                 }
@@ -161,42 +202,60 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case L_EDG_I:
             if (record->event.pressed) {
                 led_edge_brightness += 0.1;
-                if (led_edge_brightness > 1) { led_edge_brightness = 1; }
+
+                if (led_edge_brightness > 1) {
+                    led_edge_brightness = 1;
+                }
             }
             break;
 
         case L_EDG_D:
             if (record->event.pressed) {
                 led_edge_brightness -= 0.1;
-                if (led_edge_brightness < 0) { led_edge_brightness = 0; }
+
+                if (led_edge_brightness < 0) {
+                    led_edge_brightness = 0;
+                }
             }
             break;
 
         case L_RATIOI:
             if (record->event.pressed) {
                 led_ratio_brightness += 0.2;
-                if (led_ratio_brightness > 2.0) { led_ratio_brightness = 2.0; }
+
+                if (led_ratio_brightness > 2.0) {
+                    led_ratio_brightness = 2.0;
+                }
             }
             break;
 
         case L_RATIOD:
             if (record->event.pressed) {
                 led_ratio_brightness -= 0.2;
-                if (led_ratio_brightness < 0.0) { led_ratio_brightness = 0.0; }
+
+                if (led_ratio_brightness < 0.0) {
+                    led_ratio_brightness = 0.0;
+                }
             }
             break;
 
         case L_PTN:
             if (record->event.pressed) {
-                if (led_animation_id == led_setups_count - 1) led_animation_id = 0;
-                else led_animation_id++;
+                if (led_animation_id == led_setups_count - 1) {
+                    led_animation_id = 0;
+                } else {
+                    led_animation_id++;
+                }
             }
             break;
 
         case L_PTP:
             if (record->event.pressed) {
-                if (led_animation_id == 0) led_animation_id = led_setups_count - 1;
-                else led_animation_id--;
+                if (led_animation_id == 0) {
+                    led_animation_id = led_setups_count - 1;
+                } else {
+                    led_animation_id--;
+                }
             }
             break;
 
@@ -209,14 +268,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case L_PSD:
             if (record->event.pressed) {
                 led_animation_speed -= ANIMATION_SPEED_STEP;
-                if (led_animation_speed < 0) led_animation_speed = 0;
+
+                if (led_animation_speed < 0) {
+                    led_animation_speed = 0;
+                }
             }
             break;
 
         case L_T_MD:
             if (record->event.pressed) {
                 led_lighting_mode++;
-                if (led_lighting_mode > LED_MODE_MAX_INDEX) led_lighting_mode = LED_MODE_NORMAL;
+
+                if (led_lighting_mode > LED_MODE_MAX_INDEX) {
+                    led_lighting_mode = LED_MODE_NORMAL;
+                }
             }
             break;
 
@@ -241,6 +306,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case L_T_BR:
             if (record->event.pressed) {
                 led_animation_breathing = !led_animation_breathing;
+
                 if (led_animation_breathing) {
                     gcr_breathe = gcr_desired;
                     led_animation_breathe_cur = BREATHE_MIN_STEP;

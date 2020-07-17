@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MANUFACTURER        "Drop"
 #define PRODUCT             "CTRL"
-#define SERIAL_NUM          "0"
+#define SERIAL_NUM          ""
 
 /* key matrix size */
 #define MATRIX_ROWS 11
@@ -95,11 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCE 5
 
 // Required BOOT key hold time (in ms) for restarting to bootloader -PS081419
-#define BOOTKEY_HOLD_MS 2000
-
-/* vin settings */
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
+#define BOOTKEY_HOLD_MS		2000
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 //#define LOCKING_SUPPORT_ENABLE
